@@ -24,10 +24,10 @@ ENV PATH=$MAYA_LOCATION/bin:$PATH
 # `mayapy get-pip.py` throws an error: "__init__() keywords must be strings"
 # which looks to be a Python 2.6-specific error. A similar problem was found
 # here: https://github.com/rg3/youtube-dl/issues/3813
-RUN wget https://bootstrap.pypa.io/ez_setup.py && \
-    mayapy ez_setup.py && \
-    git clone https://github.com/pypa/pip.git && \
-    mayapy pip/setup.py install
+#RUN wget https://bootstrap.pypa.io/ez_setup.py && \
+#    mayapy ez_setup.py && \
+#    git clone https://github.com/pypa/pip.git && \
+#    mayapy pip/setup.py install
 
 # Cleanup
 WORKDIR /root
