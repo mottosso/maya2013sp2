@@ -20,7 +20,9 @@ RUN rm -f /usr/bin/python && \
 ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
 
-RUN git clone https://github.com/pypa/pip.git && \
+RUN wget https://bootstrap.pypa.io/ez_setup.py && \
+    mayapy ez_setup.py && \
+    git clone https://github.com/pypa/pip.git && \
     git --git-dir $(pwd)/pip/.git checkout 7.0.1 && \
     mayapy pip/setup.py install
 
