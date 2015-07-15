@@ -15,6 +15,7 @@ RUN rpm -Uvh /maya/Maya*.rpm && \
 # Setup environment
 ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
+ENV PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages
 
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py
