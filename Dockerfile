@@ -12,10 +12,6 @@ RUN wget http://download.autodesk.com/us/maya/service_packs/Autodesk_Maya_2013_S
 RUN rpm -Uvh /maya/Maya*.rpm && \
     rm -rf /maya
 
-# Make mayapy the default Python
-RUN rm -f /usr/bin/python && \
-    echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc
-
 # Setup environment
 ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
@@ -25,6 +21,10 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
 
 RUN mayapy -m pip install \
  nose
+
+# Make mayapy the default Python
+RUN rm -f /usr/bin/python && \
+    echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc
 
 # Cleanup
 WORKDIR /root
