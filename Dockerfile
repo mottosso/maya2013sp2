@@ -14,12 +14,12 @@ RUN rpm -Uvh /maya/Maya*.rpm && \
 
 # Make mayapy the default Python
 RUN rm -f /usr/bin/python && \
-    echo alias python=\"/usr/autodesk/maya/bin/mayapy\" >> ~/.bashrc && \
-    echo alias pip=\"mayapy /usr/lib/python2.6/site-packages/pip\" >> ~/.bashrc
+    echo alias python=\"/usr/autodesk/maya/bin/mayapy\" >> ~/.bashrc
 
 # Setup environment
 ENV MAYA_LOCATION=/usr/autodesk/maya/
 ENV PATH=$MAYA_LOCATION/bin:$PATH
+ENV PYTHONPATH=/usr/lib/python2.6/site-packages
 
 # Install pip manually
 # `mayapy get-pip.py` throws an error: "__init__() keywords must be strings"
