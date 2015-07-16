@@ -14,7 +14,8 @@ RUN rpm -Uvh /maya/Maya*.rpm && \
 
 # Make mayapy the default Python
 RUN rm -f /usr/bin/python && \
-    echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc
+    echo alias python=/usr/autodesk/maya/bin/mayapy >> ~/.bashrc && \
+    echo alias pip=mayapy /usr/lib/python2.6/site-packages/pip >> ~/.bashrc
 
 # Setup environment
 ENV MAYA_LOCATION=/usr/autodesk/maya/
@@ -24,10 +25,8 @@ ENV PATH=$MAYA_LOCATION/bin:$PATH
 # `mayapy get-pip.py` throws an error: "__init__() keywords must be strings"
 # which looks to be a Python 2.6-specific error. A similar problem was found
 # here: https://github.com/rg3/youtube-dl/issues/3813
-#RUN wget https://bootstrap.pypa.io/ez_setup.py && \
-#    mayapy ez_setup.py && \
-#    git clone https://github.com/pypa/pip.git && \
-#    mayapy pip/setup.py install
+RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    python2.6 get-pip.py
 
 # Cleanup
 WORKDIR /root
